@@ -1,0 +1,73 @@
+{% extends 'base.html'%}
+
+{% block title_block %}
+{% endblock %}
+
+        {% block content %}
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 id="head" >Swapnil's Blog</h1>
+                </div>
+                
+            </div>
+            
+
+            {%for post in post_list%}
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="{{post.get_absolute_url}}"> <h2 id="tit"> {{post.title}}</h2></a>
+           
+                </div>                
+
+            </div>
+            <div class="row">
+                <div class="col-md-">
+                    <p id="date"> Published on {{post.publish}} by {{post.author | title}}</p>
+                    <p id="pa">
+                        {{post.body|truncatewords:50|linebreaks}}
+                    </p>    
+                    
+                {%endfor%}
+                </div>
+
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    {%include 'pagination.html' with page=post_list%}
+                </div>
+
+            </div>
+            <div class="container" >
+                <div class=" row">
+                    <div class="col=md-4">
+                        <footer id="footer">
+                            <p>
+                                Swapnil Pathak
+                                <address>Godbole Plots, Dabki Road, Akola</address>
+                                Mobile: 7841954842
+                            </p>
+                       
+                        </footer>
+                    </div>
+    
+                </div>
+            </div>
+
+            
+        </div>
+        
+      
+        
+        {%endblock%}
+            
+        {% block sidebar %}
+        <h5>Here You can see list of posts</h5>
+            {% for post in post %}
+            <ul id="list">
+                <a href="{{post.get_absolute_url}}" id="list"> <li>{{post.title}}</li></a>
+            </ul>
+            {% endfor %}
+        {%endblock%}
